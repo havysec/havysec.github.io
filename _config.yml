@@ -1,5 +1,5 @@
 # Basic
-title: havy
+title: 安全菜鸟
 subtitle: 我的博客
 description: 韬光养晦 厚积薄发
 # 头像里面的标题
@@ -16,9 +16,9 @@ comment:
 
 # Social
 social:
-    weibo: fg-aries
-    weixing: none
-    github: havysec
+    weibo: http://weibo.com/crypto1as
+    # weixing: none
+    github: https://github.com/havysec
     twitter: fg_fragrant
     mail: 261693846@qq.com
     # csdn: robotkang
