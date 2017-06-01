@@ -1,12 +1,12 @@
 # Basic
-title: 亢志军
-subtitle: 自留地
-description: 欢迎来到我的个人网站~
+title: havy
+subtitle: 我的博客
+description: 韬光养晦 厚积薄发
 # 头像里面的标题
-avatarTitle: RobotKang
+avatarTitle: gao
 # 头像里面的描述
-avatarDesc: Python/机器学习/嵌入式
-url: "http://robotkang.cc"
+avatarDesc: 码农/安全
+url: "https://havysec.github.io"
 
 # Comment
 comment:
@@ -16,12 +16,12 @@ comment:
 
 # Social
 social:
-    weibo: 123456789
-    weixing: kang1390305137 
-    github: MengZheK
-    # twitter: 
-    mail: robotkang@foxmail.com
-    csdn: robotkang
+    weibo: fg-aries
+    weixing: none
+    github: havysec
+    twitter: fg_fragrant
+    mail: 261693846@qq.com
+    # csdn: robotkang
 
 # 百度统计 
 # 使用博客模板请去掉或者更换 id 
