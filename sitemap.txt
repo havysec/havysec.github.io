@@ -2,7 +2,4 @@
 title: sitemap.txt
 permalink: sitemap.txt
 ---
-http://robotkang.cc/college/index.html
-http://wiki.robotkang.cc/index.html
-http://robotkang.cc/index.html
-http://www.robotkang.cc/index.html
+
