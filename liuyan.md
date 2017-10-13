@@ -1,9 +1,15 @@
 ---
 layout: page
-title: 留言板「MESSAGE」 
+title: 留言板「MESSAGE」
 ---
 
-<img src="http://omjh2j5h3.bkt.clouddn.com/2345%E6%88%AA%E5%9B%BE20170318141303_%E7%9C%8B%E5%9B%BE%E7%8E%8B.jpg" width="360" height="250" alt="huanying"/>
+<!-- <img src="http://omjh2j5h3.bkt.clouddn.com/2345%E6%88%AA%E5%9B%BE20170318141303_%E7%9C%8B%E5%9B%BE%E7%8E%8B.jpg" width="360" height="250" alt="huanying"/> -->
+
+
+
+# 暂时关闭评论功能
+
+
 
 
 <p><h4>有什么话要对我说吗？</h4>     
@@ -15,11 +21,11 @@ title: 留言板「MESSAGE」
 	</audio>
 
 <div>  
-           
- 
+
+
 <object width="330" height="180" data="http://music.163.com/style/swf/widget.swf?sid=441877316&type=0&auto=1&width=310&height=430" type="application/x-shockwave-flash"></object>  
-          
-  </div> 
+
+  </div>
 -->
 
 
@@ -94,17 +100,17 @@ window.onload = bgChange;
 myVid=document.getElementById("audio1");
 
 function setHalfVolume()
-  { 
+  {
   myVid.volume=0.2;
-  } 
+  }
 
-</script> 
+</script>
 
 
-<!-- 多说评论框 start 
+<!-- 多说评论框 start
 	<div class="ds-thread" data-thread-key="/liuyan/" data-title="留言板" data-url="http://roboutkang/liuyan/"></div>
-<!-- 多说评论框 end 
-<!-- 多说公共JS代码 start (一个网页只需插入一次) 
+<!-- 多说评论框 end
+<!-- 多说公共JS代码 start (一个网页只需插入一次)
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"robotkang"};
 	(function() {
@@ -112,7 +118,7 @@ var duoshuoQuery = {short_name:"robotkang"};
 		ds.type = 'text/javascript';ds.async = true;
 		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
 		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
+		(document.getElementsByTagName('head')[0]
 		 || document.getElementsByTagName('body')[0]).appendChild(ds);
 	})();
 	</script>
@@ -121,7 +127,7 @@ var duoshuoQuery = {short_name:"robotkang"};
 <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: document.location.href, 
+    url: document.location.href,
     sourceId: "",
     productKey: "88e913c19bd844db833a1288040a08ce",
     target: "cloud-tie-wrapper"
@@ -134,6 +140,3 @@ var duoshuoQuery = {short_name:"robotkang"};
 <p>
 <a href="/fangke/" style="color:#708090"> <h5>Recent Visitors</h5></a>  
 </p>
-
-
-
