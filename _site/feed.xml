@@ -5,8 +5,8 @@
     <description>韬光养晦 厚积薄发</description>
     <link>https://havysec.github.io/</link>
     <atom:link href="https://havysec.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 18 Oct 2017 11:40:09 -0400</pubDate>
-    <lastBuildDate>Wed, 18 Oct 2017 11:40:09 -0400</lastBuildDate>
+    <pubDate>Sat, 21 Oct 2017 03:27:00 -0400</pubDate>
+    <lastBuildDate>Sat, 21 Oct 2017 03:27:00 -0400</lastBuildDate>
     <generator>Jekyll v3.1.1</generator>
     
       <item>
@@ -79,7 +79,56 @@
 
 &lt;hr /&gt;
 
-&lt;h3 id=&quot;port-6667&quot;&gt;PORT: 6667&lt;/h3&gt;
+&lt;h3 id=&quot;port-6667-unrealrcd-irc-&quot;&gt;PORT: 6667 UnrealRCD IRC 守护进程&lt;/h3&gt;
+
+&lt;p&gt;该版本(Unreal3.2.8.1)包含一个后门,该后门允许用户执行任意命令，拥有该服务的权限&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/9.png&quot; alt=&quot;Unreal&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;port-1524-ingreslock-backdoor&quot;&gt;PORT: 1524 “ingreslock” backdoor&lt;/h3&gt;
+
+&lt;p&gt;很久以前这是一个常见的后门&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/10.png&quot; alt=&quot;1524&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;port-3632-distccd-backdoor&quot;&gt;PORT: 3632 distccd backdoor&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/11.png&quot; alt=&quot;3632&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;port-445139-samba&quot;&gt;PORT: 445.139 Samba&lt;/h3&gt;
+
+&lt;p&gt;Samba 当配置为可写的文件共享并且&lt;code class=&quot;highlighter-rouge&quot;&gt;smb.conf&lt;/code&gt;中&lt;code class=&quot;highlighter-rouge&quot;&gt;wide links&lt;/code&gt;选项为on的时候，可以导致不被分享的目录也可被进入&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/12.png&quot; alt=&quot;Samba&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;weak-paawords&quot;&gt;Weak Paawords&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;msfadmin/msfadmin
+user/user
+postgres/postgres
+sys/batman
+klog/123456789
+service/service  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;web-&quot;&gt;web 应用程序有时间也会写出来&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;大智若愚，木秀于林，风必催之，国之利器不可以示人。 –来自《知乎》&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;hr /&gt;
 
