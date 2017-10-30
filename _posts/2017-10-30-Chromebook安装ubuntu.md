@@ -47,7 +47,8 @@ tags: chromebook
 
 ### 参考链接  
 
-[在中国使用chromebook](https://github.com/dubuqingfeng/Chromebook-For-Chinese)
+[在中国使用chromebook](https://github.com/dubuqingfeng/Chromebook-For-Chinese)  
+[crouton其它高级用法](https://github.com/dnschneid/crouton)
 
 
 ------

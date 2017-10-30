@@ -5,8 +5,8 @@
     <description>韬光养晦 厚积薄发</description>
     <link>https://havysec.github.io/</link>
     <atom:link href="https://havysec.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 30 Oct 2017 10:26:09 -0400</pubDate>
-    <lastBuildDate>Mon, 30 Oct 2017 10:26:09 -0400</lastBuildDate>
+    <pubDate>Mon, 30 Oct 2017 10:38:37 -0400</pubDate>
+    <lastBuildDate>Mon, 30 Oct 2017 10:38:37 -0400</lastBuildDate>
     <generator>Jekyll v3.1.1</generator>
     
       <item>
@@ -56,7 +56,8 @@ sudo su 进入root账户&lt;/p&gt;
 
 &lt;h3 id=&quot;section-1&quot;&gt;参考链接&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://github.com/dubuqingfeng/Chromebook-For-Chinese&quot;&gt;在中国使用chromebook&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/dubuqingfeng/Chromebook-For-Chinese&quot;&gt;在中国使用chromebook&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://github.com/dnschneid/crouton&quot;&gt;crouton其它高级用法&lt;/a&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
