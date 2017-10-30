@@ -7,16 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-  <title>Metasploitable2-Exploitability-Guide</title>
+  <title>Chromebook安装Ubuntu</title>
   <meta name="description" content="">
   <meta name="author" content="havy">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Metasploitable2-Exploitability-Guide">
+  <meta name="twitter:title" content="Chromebook安装Ubuntu">
   <meta name="twitter:description" content="">
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Metasploitable2-Exploitability-Guide">
+  <meta property="og:title" content="Chromebook安装Ubuntu">
   <meta property="og:description" content="">
   
   <link rel="icon" type="image/png" href="/images/favicon.png" />
@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="/css/main.css">
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
-  <link rel="canonical" href="https://havysec.github.io/2017/10/Metasploitable2-Exploitability-Guide/">
+  <link rel="canonical" href="https://havysec.github.io/2017/10/Chromebook%E5%AE%89%E8%A3%85ubuntu/">
   <link rel="alternate" type="application/rss+xml" title="安全菜鸟" href="https://havysec.github.io/feed.xml">
   
   <meta name="google-site-verification" content="1-1ZlHoRvM0T2FqPbW2S-qLgYXN6rsn52kErlMPd_gw" />
@@ -214,10 +214,10 @@ p.flower {background-image: url(http://7sbmib.com1.z0.glb.clouddn.com/body_backg
 
 <article class="post-container post-container--single" itemscope itemtype="http://schema.org/BlogPosting">
   <header class="post-header">
-    <h1 class="post-title">Metasploitable2-Exploitability-Guide</h1>
+    <h1 class="post-title">Chromebook安装Ubuntu</h1>
     <div class="post-meta" style="color:#FF6633">
       <img src="/images/calendar.png" width="20px"/> 
-      <time datetime="2017-10-16 00:00:00 -0400" itemprop="datePublished" class="post-meta__date date">2017-10-16</time>  
+      <time datetime="2017-10-30 00:00:00 -0400" itemprop="datePublished" class="post-meta__date date">2017-10-30</time>  
          
       <span id="busuanzi_container_page_pv"> | 阅读：<span id="busuanzi_value_page_pv"></span>次</span>
     </p>
@@ -226,123 +226,57 @@ p.flower {background-image: url(http://7sbmib.com1.z0.glb.clouddn.com/body_backg
 
   <section class="post">
 
-    <p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/1.png" alt="rapid7" /></p>
+    <p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-31/shopping.jpeg" alt="chromebook" /></p>
 
 <p><br /></p>
 
-<h3 id="metasploitable-2-">内容：metasploitable 2 利用笔记</h3>
+<h3 id="chromebookubuntu">内容：chromebook入手后安装ubuntu</h3>
 
-<p>暂时不包括对web应用和服务的利用</p>
+<p>今年5月份买的chromebook，买它是因为小、轻想着以后出门带着很方便。而且可以通过<code class="highlighter-rouge">Cronton</code>安装ubuntu，这样就很爽了。</p>
 
-<p>环境搭建: VMware 虚拟机<a href="https://information.rapid7.com/metasploitable-download.html">下载地址</a>  注册信息随便写，或者<a href="https://metasploit.help.rapid7.com/docs/metasploitable-2">直接下载</a>.</p>
+<h3 id="section">安装步骤(打开浏览器)</h3>
 
-<p>metasploitable 2 用户名密码<code class="highlighter-rouge">msfadmin</code>/<code class="highlighter-rouge">msfadmin</code>.登陆后查看地址<code class="highlighter-rouge">ifconfig</code>.</p>
+<blockquote>
+  <p>ctrl + alt + t 打开crosh <br />
+crosh输入shell进入linux命令行 <br />
+sudo su 进入root账户</p>
+</blockquote>
 
-<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/2.png" alt="ifconfig" /></p>
+<blockquote>
+  <blockquote>
+    <p>下载<a href="https://github.com/dnschneid/crouton">Cronton</a>,打包下载，download.zip<br />
+更改targets/audio文件第47行:  <br />
+<code class="highlighter-rouge">( wget -O "$archive" "$urlbase/$ADHD_HEAD.tar.gz" 2&gt;&amp;1 \
+                                    || echo "Error fetching CRAS" ) | tee "$log"</code> <br />
+改为: <br />
+                                      <code class="highlighter-rouge">( wget -O "$archive" "http://t.cn/R46YOzM" 2&gt;&amp;1 \
+                                    || echo "Error fetching CRAS" ) | tee "$log"
+</code></p>
+  </blockquote>
+</blockquote>
 
-<p><br /></p>
-
-<p style="color: #FF2D2D">
-<strong>打开kali用nmap扫描该地址开启的端口和服务以及服务版本:`nmap -p1-65535 -sV 192.168.227.128`</strong></p>
-
-<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/3.png" alt="nmap" /></p>
-
-<p>得到很多开启的服务及端口信息,这正是我们需要的.</p>
-
-<hr />
-
-<h3 id="port-2049-nfsnetwork-file-system-">PORT: 2049 NFS(Network File System) 网络文件系统</h3>
-
-<p>使用<code class="highlighter-rouge">rpcinfo</code>判断<code class="highlighter-rouge">NFS</code>服务是否开启，再用<code class="highlighter-rouge">showmount -e</code> 判断<code class="highlighter-rouge">linux</code>系统根目录是否被共享和可以挂载.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code># rpcinfo -p 192.168.227.128
-# showmount -e 192.168.227.128
-</code></pre>
-</div>
-
-<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/4.png" alt="NFS" /></p>
-
-<p>通过挂载远程服务器的根目录，再写入文件。这里选择写入ssh公钥用ssh私钥直接进行登录。</p>
-
-<p>创建公私钥</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code># ssh-keygen -t rsa    
-</code></pre>
-</div>
-
-<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/5.png" alt="ssh-keygen" /></p>
-
-<p>挂载共享目录到本地，再将公钥重命名写到指定目录，用私钥登录</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code># mount -t nfs 192.168.227.128:/ /tmp/
-# cat id_rsa.pub &gt;&gt; /tmp/root/.ssh/authorized_keys
-# umount /tmp
-# ssh 192.168.227.128
-</code></pre>
-</div>
-
-<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/6.png" alt="ssh" /></p>
+<blockquote>
+  <p>这样会避免从google下载audio声卡驱动 <br />
+直接运行<code class="highlighter-rouge">installer/main.sh</code> <br />
+<code class="highlighter-rouge">bash main.sh --help</code> 可以看见很多信息 <br />
+<code class="highlighter-rouge">bash main.sh -r list</code> 会显示你的机器可以安装哪些linux系统 <br />
+<code class="highlighter-rouge">bash main.sh -t list</code> 会显示安装哪些基础程序如桌面等 <br />
+<code class="highlighter-rouge">bash main.sh -r xenial -t core,x11,audio,cli-extra,extension,gtk-extra,kde</code>  我开始安装的是这几个，但是浏览器不好用<br />
+<code class="highlighter-rouge">bash main.sh -r trusty -t core,x11,audio,cli-extra,extension,gtk-extra,chromium,keyword,lxde,lxde-desktop</code> 换了这个还没怎么用 <br />
+<code class="highlighter-rouge">sudo startlxde</code> 即可打开安装好的Ubuntu<br />
+<code class="highlighter-rouge">ctrl + alt + shift + f2/f1</code> 快速切换ChromeOs/Ubunu</p>
+</blockquote>
 
 <hr />
 
-<h3 id="port-21-vsftpd-234">PORT: 21 vsftpd-2.3.4</h3>
-<p>该版本包含一个后门，如果一个用户名被传入最后包含<code class="highlighter-rouge">:)</code>，该版本会在6200端口监听一个shell，可以用telnet或者msf测试这个漏洞</p>
+<h3 id="section-1">参考链接</h3>
 
-<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/7.png" alt="telnet" /></p>
-
-<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/8.png" alt="msfconsole" /></p>
-
-<hr />
-
-<h3 id="port-6667-unrealrcd-irc-">PORT: 6667 UnrealRCD IRC 守护进程</h3>
-
-<p>该版本(Unreal3.2.8.1)包含一个后门,该后门允许用户执行任意命令，拥有该服务的权限</p>
-
-<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/9.png" alt="Unreal" /></p>
-
-<hr />
-
-<h3 id="port-1524-ingreslock-backdoor">PORT: 1524 “ingreslock” backdoor</h3>
-
-<p>很久以前这是一个常见的后门</p>
-
-<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/10.png" alt="1524" /></p>
-
-<hr />
-
-<h3 id="port-3632-distccd-backdoor">PORT: 3632 distccd backdoor</h3>
-
-<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/11.png" alt="3632" /></p>
-
-<hr />
-
-<h3 id="port-445139-samba">PORT: 445.139 Samba</h3>
-
-<p>Samba 当配置为可写的文件共享并且<code class="highlighter-rouge">smb.conf</code>中<code class="highlighter-rouge">wide links</code>选项为on的时候，可以导致不被分享的目录也可被进入</p>
-
-<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-16/12.png" alt="Samba" /></p>
-
-<hr />
-
-<h3 id="weak-paawords">Weak Paawords</h3>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>msfadmin/msfadmin
-user/user
-postgres/postgres
-sys/batman
-klog/123456789
-service/service  
-</code></pre>
-</div>
-
-<hr />
-
-<h1 id="web-">web 应用程序有时间也会写出来</h1>
+<p><a href="https://github.com/dubuqingfeng/Chromebook-For-Chinese">在中国使用chromebook</a></p>
 
 <hr />
 
 <blockquote>
-  <p>大智若愚。木秀于林，风必催之。国之利器，不可以示人。 –来自《知乎》</p>
+  <p>长大之后的我们，会变的世故，甚至变得你自己都不知道自己是谁！ -毛不易《消愁》</p>
 </blockquote>
 
 <hr />
@@ -439,15 +373,10 @@ service/service
        <ul class="pager">
         
         <li class="previous">
-            <a href="/2017/10/%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99/" data-toggle="tooltip" data-placement="top" title="随便写写">上一篇：  <span>随便写写</span>
+            <a href="/2017/10/Metasploitable2-Exploitability-Guide/" data-toggle="tooltip" data-placement="top" title="Metasploitable2-Exploitability-Guide">上一篇：  <span>Metasploitable2-Exploitability-Guide</span>
             </a>
         </li>
         
-        
-        <li class="next">
-            <a href="/2017/10/Chromebook%E5%AE%89%E8%A3%85ubuntu/" data-toggle="tooltip" data-placement="top" title="Chromebook安装Ubuntu">下一篇：  <span>Chromebook安装Ubuntu</span>
-            </a>
-        </li>
         
     </ul>
 </section>
@@ -458,7 +387,7 @@ service/service
 <br>
 
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="" data-title="Metasploitable2-Exploitability-Guide " data-url="robotkang.cc//2017/10/Metasploitable2-Exploitability-Guide/"></div>
+	<div class="ds-thread" data-thread-key="" data-title="Chromebook安装Ubuntu " data-url="robotkang.cc//2017/10/Chromebook%E5%AE%89%E8%A3%85ubuntu/"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

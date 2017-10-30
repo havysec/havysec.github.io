@@ -5,9 +5,78 @@
     <description>韬光养晦 厚积薄发</description>
     <link>https://havysec.github.io/</link>
     <atom:link href="https://havysec.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 21 Oct 2017 03:27:00 -0400</pubDate>
-    <lastBuildDate>Sat, 21 Oct 2017 03:27:00 -0400</lastBuildDate>
+    <pubDate>Mon, 30 Oct 2017 10:26:09 -0400</pubDate>
+    <lastBuildDate>Mon, 30 Oct 2017 10:26:09 -0400</lastBuildDate>
     <generator>Jekyll v3.1.1</generator>
+    
+      <item>
+        <title>Chromebook安装Ubuntu</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-31/shopping.jpeg&quot; alt=&quot;chromebook&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;chromebookubuntu&quot;&gt;内容：chromebook入手后安装ubuntu&lt;/h3&gt;
+
+&lt;p&gt;今年5月份买的chromebook，买它是因为小、轻想着以后出门带着很方便。而且可以通过&lt;code class=&quot;highlighter-rouge&quot;&gt;Cronton&lt;/code&gt;安装ubuntu，这样就很爽了。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;安装步骤(打开浏览器)&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ctrl + alt + t 打开crosh &lt;br /&gt;
+crosh输入shell进入linux命令行 &lt;br /&gt;
+sudo su 进入root账户&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;下载&lt;a href=&quot;https://github.com/dnschneid/crouton&quot;&gt;Cronton&lt;/a&gt;,打包下载，download.zip&lt;br /&gt;
+更改targets/audio文件第47行:  &lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;( wget -O &quot;$archive&quot; &quot;$urlbase/$ADHD_HEAD.tar.gz&quot; 2&amp;gt;&amp;amp;1 \
+                                    || echo &quot;Error fetching CRAS&quot; ) | tee &quot;$log&quot;&lt;/code&gt; &lt;br /&gt;
+改为: &lt;br /&gt;
+                                      &lt;code class=&quot;highlighter-rouge&quot;&gt;( wget -O &quot;$archive&quot; &quot;http://t.cn/R46YOzM&quot; 2&amp;gt;&amp;amp;1 \
+                                    || echo &quot;Error fetching CRAS&quot; ) | tee &quot;$log&quot;
+&lt;/code&gt;&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;这样会避免从google下载audio声卡驱动 &lt;br /&gt;
+直接运行&lt;code class=&quot;highlighter-rouge&quot;&gt;installer/main.sh&lt;/code&gt; &lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;bash main.sh --help&lt;/code&gt; 可以看见很多信息 &lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;bash main.sh -r list&lt;/code&gt; 会显示你的机器可以安装哪些linux系统 &lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;bash main.sh -t list&lt;/code&gt; 会显示安装哪些基础程序如桌面等 &lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;bash main.sh -r xenial -t core,x11,audio,cli-extra,extension,gtk-extra,kde&lt;/code&gt;  我开始安装的是这几个，但是浏览器不好用&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;bash main.sh -r trusty -t core,x11,audio,cli-extra,extension,gtk-extra,chromium,keyword,lxde,lxde-desktop&lt;/code&gt; 换了这个还没怎么用 &lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo startlxde&lt;/code&gt; 即可打开安装好的Ubuntu&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;ctrl + alt + shift + f2/f1&lt;/code&gt; 快速切换ChromeOs/Ubunu&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;参考链接&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/dubuqingfeng/Chromebook-For-Chinese&quot;&gt;在中国使用chromebook&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;长大之后的我们，会变的世故，甚至变得你自己都不知道自己是谁！ -毛不易《消愁》&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 30 Oct 2017 00:00:00 -0400</pubDate>
+        <link>https://havysec.github.io/2017/10/Chromebook%E5%AE%89%E8%A3%85ubuntu/</link>
+        <guid isPermaLink="true">https://havysec.github.io/2017/10/Chromebook%E5%AE%89%E8%A3%85ubuntu/</guid>
+        
+        <category>chromebook</category>
+        
+        
+      </item>
     
       <item>
         <title>Metasploitable2-Exploitability-Guide</title>
@@ -127,7 +196,7 @@ service/service
 &lt;hr /&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;大智若愚，木秀于林，风必催之，国之利器不可以示人。 –来自《知乎》&lt;/p&gt;
+  &lt;p&gt;大智若愚。木秀于林，风必催之。国之利器，不可以示人。 –来自《知乎》&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;hr /&gt;
