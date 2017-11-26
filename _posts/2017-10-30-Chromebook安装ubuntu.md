@@ -15,13 +15,13 @@ tags: chromebook
 
 ###  内容：chromebook入手后安装ubuntu    
 
-今年5月份买的chromebook，买它是因为小、轻想着以后出门带着很方便。而且可以通过`Cronton`安装ubuntu，这样就很爽了。  
+今年5月份买的`chromebook`，买它是因为小、轻想着以后出门带着很方便。而且可以通过`Cronton`安装`ubuntu`，这样就很爽了。而且这款  
 
 ### 安装步骤(打开浏览器)   
 
-> ctrl + alt + t 打开crosh   
-> crosh输入shell进入linux命令行   
-> sudo su 进入root账户  
+> `ctrl + alt + t` 打开`crosh`   
+> `crosh`输入shell进入linux命令行   
+> `sudo su` 进入`root`账户  
 
 >> 下载[Cronton](https://github.com/dnschneid/crouton),打包下载，download.zip  
 >> 更改targets/audio文件第47行:    
@@ -38,9 +38,11 @@ tags: chromebook
 > `bash main.sh -r list` 会显示你的机器可以安装哪些linux系统   
 > `bash main.sh -t list` 会显示安装哪些基础程序如桌面等   
 > `bash main.sh -r xenial -t core,x11,audio,cli-extra,extension,gtk-extra,kde`  我开始安装的是这几个，但是浏览器不好用  
-> `bash main.sh -r trusty -t core,x11,audio,cli-extra,extension,gtk-extra,chromium,keyword,lxde,lxde-desktop` 换了这个还没怎么用   
+> `bash main.sh -r xenial -t core,x11,audio,cli-extra,extension,gtk-extra,chromium,keyword,lxde,lxde-desktop` 换了这个还没怎么用   
 > `sudo startlxde` 即可打开安装好的Ubuntu  
-> `ctrl + alt + shift + f2/f1` 快速切换ChromeOs/Ubunu
+> `ctrl + alt + shift + f2/f1` 快速切换ChromeOs/Ubunu  
+> `sudo startcli / sudo enter-chroot`  可以类似于ssh登录Ubuntu  
+> 写`python`用`spyder` `apt install spyder`
 
 
 ------   
