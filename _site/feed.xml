@@ -5,9 +5,338 @@
     <description>韬光养晦 厚积薄发</description>
     <link>https://havysec.github.io/</link>
     <atom:link href="https://havysec.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 24 Feb 2018 09:55:40 -0500</pubDate>
-    <lastBuildDate>Sat, 24 Feb 2018 09:55:40 -0500</lastBuildDate>
+    <pubDate>Tue, 20 Mar 2018 11:58:32 +0800</pubDate>
+    <lastBuildDate>Tue, 20 Mar 2018 11:58:32 +0800</lastBuildDate>
     <generator>Jekyll v3.1.1</generator>
+    
+      <item>
+        <title>渗透测试与开发者工具</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/1.png&quot; alt=&quot;browsers&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;介绍：&lt;/h3&gt;
+
+&lt;p&gt;您是否可以使用浏览器执行Web应用程序安全测试？ 想一想你必须从一个非常有限的环境中进行安全测试的场景，在这个环境中，你无法访问运行脚本或工具，而你只有一台浏览器。 本指南将从这种锁定的方案着眼于Web应用程序安全性测试。 目标是尽可能多地从浏览器中覆盖安全测试用例。 尽管从浏览器执行所有与Web应用程序相关的安全测试用例是不可能的，但在相同的帮助下可以保证一定的覆盖率。 仅靠浏览器无法取代涉及代理和扫描程序的传统Web应用程序安全测试方法。 从不建议完全依赖可以从浏览器完成的安全测试。&lt;/p&gt;
+
+&lt;p&gt;本指南的其他潜在用例之一是准备安全测试报告。 任何漏洞发现的最重要的部分是“再现步骤”。 大多数安全专业人员在此步骤中广泛使用Burp Suite或ZAP等工具。 但是，安全测试的主要受众（包括开发人员）不会对设置代理和类似工具有足够的了解 - 这使得他们的安全漏洞复制变得困难。 事实上，您可能会参加笔后测试会议，利益相关方会要求您减少发生漏洞的可能性，因为利用这些漏洞需要设置代理。 阅读本指南后，您将能够通过涉及浏览器的简单步骤重新编写大部分这些文章 - 测试报告的目标受众中几乎每个人都可以访问这些步骤。&lt;/p&gt;
+
+&lt;p&gt;需要指出的是，这项研究仅关注所有与Web应用程序安全相关的测试，只需使用浏览器的本地功能即可完成。 这并不包括这些浏览器在扩展的帮助下可以做些什么。 现在几乎所有的主流浏览器都支持安装扩展，并且有很多更强大的功能可以在它们的帮助下完成，本文不会涉及。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;实践:&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Firefox&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;Chrome&lt;/code&gt;浏览器,&lt;a href=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/attach/browsers.zip&quot;&gt;当前测试版本下载地址&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;随便访问一个页面，看看&lt;code class=&quot;highlighter-rouge&quot;&gt;Web开发者工具箱&lt;/code&gt;，这个是浏览器自带的开发者工具。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/5.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;快捷键:&lt;code class=&quot;highlighter-rouge&quot;&gt;F12&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl shift i&lt;/code&gt;两者其中之一&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;下面介绍一些其他浏览器或者其他的打开方式&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;按&lt;code class=&quot;highlighter-rouge&quot;&gt;Cmd + Shift + I&lt;/code&gt;Mac&lt;/li&gt;
+  &lt;li&gt;右键单击网页，然后在Google Chrome上选择检查(inspect)。&lt;/li&gt;
+  &lt;li&gt;点击kabob菜单，然后导航到Google Chrome上的更多工具和开发者工具。&lt;/li&gt;
+  &lt;li&gt;右键单击网页，然后在Mozilla Firefox上选择检查元素。&lt;/li&gt;
+  &lt;li&gt;点击汉堡菜单，然后导航到Web Developer，然后在Mozilla Firefox上切换工具。&lt;/li&gt;
+  &lt;li&gt;通过点击齿轮图标，然后导航到Edge/IE上的F12 Developer Tools。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;开发者工具的主要功能如下：&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Switching User Agents&lt;/li&gt;
+  &lt;li&gt;Edit and Replay Requests&lt;/li&gt;
+  &lt;li&gt;Editing Cookies&lt;/li&gt;
+  &lt;li&gt;Editing Local Storage&lt;/li&gt;
+  &lt;li&gt;Disable CSS&lt;/li&gt;
+  &lt;li&gt;Disable Javascript&lt;/li&gt;
+  &lt;li&gt;View Headers&lt;/li&gt;
+  &lt;li&gt;Native screen-shot capture&lt;/li&gt;
+  &lt;li&gt;Offline mode&lt;/li&gt;
+  &lt;li&gt;Encode and Decode&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;那么对应不同的浏览器功能是否一样呢？看下表&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/6.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;所以这里我们主要以&lt;code class=&quot;highlighter-rouge&quot;&gt;Chrome&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;Firfox&lt;/code&gt;为例&lt;/p&gt;
+
+&lt;h2 id=&quot;switching-user-agents&quot;&gt;Switching User Agents&lt;/h2&gt;
+
+&lt;h3 id=&quot;mozilla-firefox-switching-user-agents&quot;&gt;Mozilla Firefox: Switching User Agents&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;浏览到Firefox的&lt;code class=&quot;highlighter-rouge&quot;&gt;about:config&lt;/code&gt;页面，点击我接受风险！&lt;/li&gt;
+  &lt;li&gt;在搜索字段中输入useragent。&lt;/li&gt;
+  &lt;li&gt;查找&lt;code class=&quot;highlighter-rouge&quot;&gt;general.useragent.override&lt;/code&gt;，如果您看不到此首选项，请右键单击&lt;code class=&quot;highlighter-rouge&quot;&gt;about:config&lt;/code&gt;页面&amp;gt; New&amp;gt; String&lt;/li&gt;
+  &lt;li&gt;将首选项命名为&lt;code class=&quot;highlighter-rouge&quot;&gt;general.useragent.override&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;右键单击&lt;code class=&quot;highlighter-rouge&quot;&gt;general.useragent.override&lt;/code&gt;首选项并选择&lt;code class=&quot;highlighter-rouge&quot;&gt;Reset&lt;/code&gt;以切换回默认用户代理。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;useragent&quot;&gt;查看自己当前的useragent&lt;/h3&gt;
+
+&lt;p&gt;首先我们访问&lt;code class=&quot;highlighter-rouge&quot;&gt;http://www.atool.org/useragent.php&lt;/code&gt;查看自己当前的&lt;code class=&quot;highlighter-rouge&quot;&gt;useragent&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/7.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;OK!接下来就是一步一步更改&lt;code class=&quot;highlighter-rouge&quot;&gt;useragent&lt;/code&gt;了&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/8.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;可见&lt;code class=&quot;highlighter-rouge&quot;&gt;useragent&lt;/code&gt;已经更改了&lt;/p&gt;
+
+&lt;h3 id=&quot;google-chrome-switching-user-agents&quot;&gt;Google Chrome: Switching User Agents&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;打开浏览器的开发者工具&lt;/li&gt;
+  &lt;li&gt;点击更多工具选择&lt;code class=&quot;highlighter-rouge&quot;&gt;Network Conditions&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/9.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;下面分别介绍其他的浏览器的更改方式，一笔带过感兴趣的自己操作一遍。&lt;/p&gt;
+
+&lt;h3 id=&quot;edgeie-switching-user-agents&quot;&gt;Edge/IE: Switching User Agents&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;打开浏览器的开发者工具&lt;/li&gt;
+  &lt;li&gt;点击&lt;code class=&quot;highlighter-rouge&quot;&gt;Emulation&lt;/code&gt;标签选择&lt;code class=&quot;highlighter-rouge&quot;&gt;useragent&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;接下来介绍如何用开发者工具&lt;code class=&quot;highlighter-rouge&quot;&gt;编辑和重放请求&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;edit-and-replay-requests&quot;&gt;Edit and Replay Requests&lt;/h2&gt;
+
+&lt;h3 id=&quot;mozilla-firefox-edit-and-replay-requests&quot;&gt;Mozilla Firefox: Edit and Replay Requests&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;打开浏览器的开发者工具&lt;/li&gt;
+  &lt;li&gt;点击&lt;code class=&quot;highlighter-rouge&quot;&gt;Network&lt;/code&gt;标签&lt;/li&gt;
+  &lt;li&gt;刷新或者提交数据&lt;/li&gt;
+  &lt;li&gt;在请求上面右键点击&lt;code class=&quot;highlighter-rouge&quot;&gt;Edit and Resend&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;修改数据后点击&lt;code class=&quot;highlighter-rouge&quot;&gt;Send&lt;/code&gt;按钮&lt;/li&gt;
+  &lt;li&gt;右键在新标签打开&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;由于之前申请环境的时候有一个内网地址，可以看看，根据实际情况的不同，我这里是&lt;code class=&quot;highlighter-rouge&quot;&gt;172.18.0.13&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/10.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这里我们在更改数据的时候同时更改了&lt;code class=&quot;highlighter-rouge&quot;&gt;password&lt;/code&gt;字段以及&lt;code class=&quot;highlighter-rouge&quot;&gt;user_token&lt;/code&gt;字段，这里是因为做了&lt;code class=&quot;highlighter-rouge&quot;&gt;csrf&lt;/code&gt;验证。详细原理可以自行学习相关知识。&lt;/p&gt;
+
+&lt;h2 id=&quot;editing-cookies&quot;&gt;Editing Cookies&lt;/h2&gt;
+
+&lt;h3 id=&quot;mozilla-firefox-editing-cookies&quot;&gt;Mozilla Firefox: Editing Cookies&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;打开浏览器的开发工具&lt;/li&gt;
+  &lt;li&gt;点击&lt;code class=&quot;highlighter-rouge&quot;&gt;Storage&lt;/code&gt;选项卡&lt;/li&gt;
+  &lt;li&gt;导航到Cookies，然后选择应用程序域&lt;/li&gt;
+  &lt;li&gt;双击任何cookie值以编辑它们&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;首先访问&lt;code class=&quot;highlighter-rouge&quot;&gt;http://www.w3school.com.cn/tiy/t.asp?f=hdom_document_cookie&lt;/code&gt;测试当前的&lt;code class=&quot;highlighter-rouge&quot;&gt;cookie&lt;/code&gt;值&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/11.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;成功修改&lt;code class=&quot;highlighter-rouge&quot;&gt;Cookie&lt;/code&gt;的值,但是由于这里刷新一次服务器就会&lt;code class=&quot;highlighter-rouge&quot;&gt;response&lt;/code&gt;一个原来的值，所以再刷新一次他就变成原来的&lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;google-chrome-editing-cookies&quot;&gt;Google Chrome: Editing Cookies&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;打开浏览器的开发工具&lt;/li&gt;
+  &lt;li&gt;点击&lt;code class=&quot;highlighter-rouge&quot;&gt;Application&lt;/code&gt;选项卡&lt;/li&gt;
+  &lt;li&gt;导航到Cookies，然后选择应用程序域&lt;/li&gt;
+  &lt;li&gt;双击任何cookie值以编辑它们&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;PS:经过测试，有些网站不行。建议用&lt;code class=&quot;highlighter-rouge&quot;&gt;Firefox&lt;/code&gt;编辑&lt;code class=&quot;highlighter-rouge&quot;&gt;Cookie&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;edgeie-editing-cookies&quot;&gt;Edge/IE: Editing Cookies&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;打开浏览器的开发工具&lt;/li&gt;
+  &lt;li&gt;点击&lt;code class=&quot;highlighter-rouge&quot;&gt;Debugger&lt;/code&gt;选项卡&lt;/li&gt;
+  &lt;li&gt;导航到Cookies，然后选择应用程序域&lt;/li&gt;
+  &lt;li&gt;双击任何cookie值以编辑它们&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;editing-local-storage&quot;&gt;Editing Local Storage&lt;/h2&gt;
+
+&lt;p&gt;跟&lt;code class=&quot;highlighter-rouge&quot;&gt;Cookie&lt;/code&gt;类似，不再演示。&lt;/p&gt;
+
+&lt;h2 id=&quot;disable-javascript&quot;&gt;Disable JavaScript&lt;/h2&gt;
+
+&lt;h3 id=&quot;google-chrome-disable-javascript&quot;&gt;Google Chrome: Disable JavaScript&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;打开浏览器的开发工具&lt;/li&gt;
+  &lt;li&gt;点击三个点菜单然后选择&lt;code class=&quot;highlighter-rouge&quot;&gt;Settings&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;找到&lt;code class=&quot;highlighter-rouge&quot;&gt;Preferences&lt;/code&gt;选择项&lt;/li&gt;
+  &lt;li&gt;在&lt;code class=&quot;highlighter-rouge&quot;&gt;Debugger&lt;/code&gt;里面，选中&lt;code class=&quot;highlighter-rouge&quot;&gt;Disable JavaScript&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/12.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;mozilla-firefox-disable-javascript&quot;&gt;Mozilla Firefox: Disable JavaScript&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;打开浏览器的开发工具&lt;/li&gt;
+  &lt;li&gt;点击右侧的设置图标&lt;/li&gt;
+  &lt;li&gt;然后在高级选项下面找到禁止&lt;code class=&quot;highlighter-rouge&quot;&gt;JavaScript&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/13.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;viewing-headers&quot;&gt;Viewing Headers&lt;/h2&gt;
+
+&lt;h3 id=&quot;google-chrome-viewing-headers&quot;&gt;Google Chrome: Viewing Headers&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;打开浏览器的开发工具&lt;/li&gt;
+  &lt;li&gt;找到&lt;code class=&quot;highlighter-rouge&quot;&gt;Network&lt;/code&gt;选项&lt;/li&gt;
+  &lt;li&gt;执行任何动作对于web应用程序&lt;/li&gt;
+  &lt;li&gt;任意找文件查看&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/14.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;mozilla-firefox-viewing-headers&quot;&gt;Mozilla Firefox: Viewing Headers&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;打开浏览器的开发工具&lt;/li&gt;
+  &lt;li&gt;点击&lt;code class=&quot;highlighter-rouge&quot;&gt;Network&lt;/code&gt;选项&lt;/li&gt;
+  &lt;li&gt;执行任何动作对于web应用程序&lt;/li&gt;
+  &lt;li&gt;任意找文件查看&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/15.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;edgeie-viewing-headers&quot;&gt;Edge/IE: Viewing Headers&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;打开浏览器的开发工具&lt;/li&gt;
+  &lt;li&gt;点击&lt;code class=&quot;highlighter-rouge&quot;&gt;Network&lt;/code&gt;选项&lt;/li&gt;
+  &lt;li&gt;点击&lt;code class=&quot;highlighter-rouge&quot;&gt;Play&lt;/code&gt;按钮&lt;/li&gt;
+  &lt;li&gt;执行任何动作对于web应用程序&lt;/li&gt;
+  &lt;li&gt;点击&lt;code class=&quot;highlighter-rouge&quot;&gt;Stop&lt;/code&gt;按钮&lt;/li&gt;
+  &lt;li&gt;选择一个页面文件点击&lt;code class=&quot;highlighter-rouge&quot;&gt;Details&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;capture-screen-shots&quot;&gt;Capture Screen-shots&lt;/h2&gt;
+
+&lt;h3 id=&quot;google-chrome-capture-screen-shots&quot;&gt;Google Chrome: Capture Screen-shots&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;打开浏览器的开发工具&lt;/li&gt;
+  &lt;li&gt;点击&lt;code class=&quot;highlighter-rouge&quot;&gt;Toogle device toolbar&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;点击右上角三个小点点选择&lt;code class=&quot;highlighter-rouge&quot;&gt;Capture screenshot&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/16.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;mozilla-firefox-capture-screen-shots&quot;&gt;Mozilla Firefox: Capture Screen-shots&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/17.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;edgeie-capture-screen-shots&quot;&gt;Edge/IE: Capture Screen-shots&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;点击笔一样的按钮，在顶端&lt;/li&gt;
+  &lt;li&gt;找到剪刀一样的按钮点击&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;offline-mode&quot;&gt;Offline mode&lt;/h2&gt;
+
+&lt;h3 id=&quot;google-chrome-offline-mode&quot;&gt;Google Chrome: Offline mode&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;打开浏览器的开发工具&lt;/li&gt;
+  &lt;li&gt;点击&lt;code class=&quot;highlighter-rouge&quot;&gt;Network&lt;/code&gt;选项&lt;/li&gt;
+  &lt;li&gt;选中&lt;code class=&quot;highlighter-rouge&quot;&gt;Offline&lt;/code&gt;选项&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;mozilla-firefox-offline-mode&quot;&gt;Mozilla Firefox: Offline mode&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;选择开发者工具后最下面的&lt;code class=&quot;highlighter-rouge&quot;&gt;Work Offline&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;encode-and-decode&quot;&gt;Encode and Decode&lt;/h2&gt;
+
+&lt;p&gt;浏览器的&lt;code class=&quot;highlighter-rouge&quot;&gt;console&lt;/code&gt;有基本的加解密功能&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Function&lt;/th&gt;
+      &lt;th&gt;Code&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Base64 encode&lt;/td&gt;
+      &lt;td&gt;btoa(“string-to-encode”)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Base64 decode&lt;/td&gt;
+      &lt;td&gt;atob(“string-to-decode”)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;URL encode&lt;/td&gt;
+      &lt;td&gt;encodeURIComponent(“string-to-encode”)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;URL decode&lt;/td&gt;
+      &lt;td&gt;decodeURIComponent(“string-to-decode”)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;HTML encode&lt;/td&gt;
+      &lt;td&gt;escape(“string-to-encode”)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;HTML decode&lt;/td&gt;
+      &lt;td&gt;unescape(“string-to-decode”)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/18.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;这个世界不缺伟大和成功&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;而我的世界也不怕失败者&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;何不让我追求 我的快乐&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;来自林宥嘉《飞》&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 20 Mar 2018 00:00:00 +0800</pubDate>
+        <link>https://havysec.github.io/2018/03/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7/</link>
+        <guid isPermaLink="true">https://havysec.github.io/2018/03/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7/</guid>
+        
+        <category>学而不思则罔</category>
+        
+        
+      </item>
     
       <item>
         <title>《黑客与画家》读后感</title>
@@ -77,7 +406,7 @@
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 </description>
-        <pubDate>Sat, 24 Feb 2018 00:00:00 -0500</pubDate>
+        <pubDate>Sat, 24 Feb 2018 00:00:00 +0800</pubDate>
         <link>https://havysec.github.io/2018/02/%E9%BB%91%E5%AE%A2%E4%B8%8E%E7%94%BB%E5%AE%B6-%E8%AF%BB%E5%90%8E%E6%84%9F/</link>
         <guid isPermaLink="true">https://havysec.github.io/2018/02/%E9%BB%91%E5%AE%A2%E4%B8%8E%E7%94%BB%E5%AE%B6-%E8%AF%BB%E5%90%8E%E6%84%9F/</guid>
         
@@ -144,7 +473,7 @@ demo
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 </description>
-        <pubDate>Sun, 26 Nov 2017 00:00:00 -0500</pubDate>
+        <pubDate>Sun, 26 Nov 2017 00:00:00 +0800</pubDate>
         <link>https://havysec.github.io/2017/11/CVE-2017-11882-%E5%A4%8D%E7%8E%B0/</link>
         <guid isPermaLink="true">https://havysec.github.io/2017/11/CVE-2017-11882-%E5%A4%8D%E7%8E%B0/</guid>
         
@@ -216,7 +545,7 @@ demo
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 </description>
-        <pubDate>Mon, 30 Oct 2017 00:00:00 -0400</pubDate>
+        <pubDate>Mon, 30 Oct 2017 00:00:00 +0800</pubDate>
         <link>https://havysec.github.io/2017/10/Chromebook%E5%AE%89%E8%A3%85ubuntu/</link>
         <guid isPermaLink="true">https://havysec.github.io/2017/10/Chromebook%E5%AE%89%E8%A3%85ubuntu/</guid>
         
@@ -351,7 +680,7 @@ service/service
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 </description>
-        <pubDate>Mon, 16 Oct 2017 00:00:00 -0400</pubDate>
+        <pubDate>Mon, 16 Oct 2017 00:00:00 +0800</pubDate>
         <link>https://havysec.github.io/2017/10/Metasploitable2-Exploitability-Guide/</link>
         <guid isPermaLink="true">https://havysec.github.io/2017/10/Metasploitable2-Exploitability-Guide/</guid>
         
@@ -402,7 +731,7 @@ service/service
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 </description>
-        <pubDate>Thu, 12 Oct 2017 00:00:00 -0400</pubDate>
+        <pubDate>Thu, 12 Oct 2017 00:00:00 +0800</pubDate>
         <link>https://havysec.github.io/2017/10/%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99/</link>
         <guid isPermaLink="true">https://havysec.github.io/2017/10/%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99/</guid>
         

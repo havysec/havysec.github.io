@@ -7,16 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-  <title>随便写写</title>
+  <title>渗透测试与开发者工具</title>
   <meta name="description" content="">
   <meta name="author" content="havy">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="随便写写">
+  <meta name="twitter:title" content="渗透测试与开发者工具">
   <meta name="twitter:description" content="">
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="随便写写">
+  <meta property="og:title" content="渗透测试与开发者工具">
   <meta property="og:description" content="">
   
   <link rel="icon" type="image/png" href="/images/favicon.png" />
@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="/css/main.css">
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
-  <link rel="canonical" href="https://havysec.github.io/2017/10/%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99/">
+  <link rel="canonical" href="https://havysec.github.io/2018/03/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7/">
   <link rel="alternate" type="application/rss+xml" title="安全菜鸟" href="https://havysec.github.io/feed.xml">
   
   <meta name="google-site-verification" content="1-1ZlHoRvM0T2FqPbW2S-qLgYXN6rsn52kErlMPd_gw" />
@@ -214,10 +214,10 @@ p.flower {background-image: url(http://7sbmib.com1.z0.glb.clouddn.com/body_backg
 
 <article class="post-container post-container--single" itemscope itemtype="http://schema.org/BlogPosting">
   <header class="post-header">
-    <h1 class="post-title">随便写写</h1>
+    <h1 class="post-title">渗透测试与开发者工具</h1>
     <div class="post-meta" style="color:#FF6633">
       <img src="/images/calendar.png" width="20px"/> 
-      <time datetime="2017-10-12 00:00:00 +0800" itemprop="datePublished" class="post-meta__date date">2017-10-12</time>  
+      <time datetime="2018-03-20 00:00:00 +0800" itemprop="datePublished" class="post-meta__date date">2018-03-20</time>  
          
       <span id="busuanzi_container_page_pv"> | 阅读：<span id="busuanzi_value_page_pv"></span>次</span>
     </p>
@@ -226,41 +226,319 @@ p.flower {background-image: url(http://7sbmib.com1.z0.glb.clouddn.com/body_backg
 
   <section class="post">
 
-    <p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2017-10-12/blog.png" alt="博客首页" /></p>
+    <p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/1.png" alt="browsers" /></p>
 
 <p><br /></p>
 
-<p>博客的初衷：记录一些平时可能遇到的问题、学习的总结、知识的分享、生活的分享等。。。。 <br />
-  第一篇不知道说什么，就随便写写。</p>
+<h3 id="section">介绍：</h3>
 
-<p><br /></p>
+<p>您是否可以使用浏览器执行Web应用程序安全测试？ 想一想你必须从一个非常有限的环境中进行安全测试的场景，在这个环境中，你无法访问运行脚本或工具，而你只有一台浏览器。 本指南将从这种锁定的方案着眼于Web应用程序安全性测试。 目标是尽可能多地从浏览器中覆盖安全测试用例。 尽管从浏览器执行所有与Web应用程序相关的安全测试用例是不可能的，但在相同的帮助下可以保证一定的覆盖率。 仅靠浏览器无法取代涉及代理和扫描程序的传统Web应用程序安全测试方法。 从不建议完全依赖可以从浏览器完成的安全测试。</p>
 
-<p>我现在在听张悬的《亲爱的》，感觉她的歌总给人一种要好好生活的冲动。<strong>别忘了，要温柔</strong>，歌词是这么写的，但是我怕是暂时做不到温柔的对待生活。</p>
+<p>本指南的其他潜在用例之一是准备安全测试报告。 任何漏洞发现的最重要的部分是“再现步骤”。 大多数安全专业人员在此步骤中广泛使用Burp Suite或ZAP等工具。 但是，安全测试的主要受众（包括开发人员）不会对设置代理和类似工具有足够的了解 - 这使得他们的安全漏洞复制变得困难。 事实上，您可能会参加笔后测试会议，利益相关方会要求您减少发生漏洞的可能性，因为利用这些漏洞需要设置代理。 阅读本指南后，您将能够通过涉及浏览器的简单步骤重新编写大部分这些文章 - 测试报告的目标受众中几乎每个人都可以访问这些步骤。</p>
 
-<p><br /></p>
+<p>需要指出的是，这项研究仅关注所有与Web应用程序安全相关的测试，只需使用浏览器的本地功能即可完成。 这并不包括这些浏览器在扩展的帮助下可以做些什么。 现在几乎所有的主流浏览器都支持安装扩展，并且有很多更强大的功能可以在它们的帮助下完成，本文不会涉及。</p>
 
-<p style="color: #FF2D2D">
-<strong>说说这个博客系统怎么来的，这个博客系统是我搭好环境后copy别人的模板，做了一些更改，就是把原作者的信息换成我的。手动滑稽~~</strong></p>
-<p>暂时是这个样子，后期有时间会做很多更改。</p>
+<h3 id="section-1">实践:</h3>
 
-<p>2017年也快结束了，提前做一个总结吧！</p>
+<p><code class="highlighter-rouge">Firefox</code>和<code class="highlighter-rouge">Chrome</code>浏览器,<a href="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/attach/browsers.zip">当前测试版本下载地址</a></p>
 
-<p>原计划今年要看多少本技术和名著方面的书，可以说是只完成了1%。
-在现公司转正，加上实习时间也差不多一年时间了，感觉每个同事都挺好的。<br />
-但是我同样知道这是一个人吃人的社会，特别是在资本主义人群中，这种感觉越明显。</p>
+<p>随便访问一个页面，看看<code class="highlighter-rouge">Web开发者工具箱</code>，这个是浏览器自带的开发者工具。</p>
 
-<p style="color: #FF2D2D">技术方面没有得到多大提升，这跟自己有很大关系。</p>
+<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/5.gif" alt="" /></p>
 
-<hr />
+<p>快捷键:<code class="highlighter-rouge">F12</code>、<code class="highlighter-rouge">Ctrl shift i</code>两者其中之一</p>
 
-<p>明年的计划，还没有想好，总之先把技术学好，多学习。有机会的话还是想出去走走，以前去过一些地方，后来不想去是因为我太菜了，想弥补。</p>
+<h3 id="section-2">下面介绍一些其他浏览器或者其他的打开方式</h3>
 
-<p>未来，跟大多数人的想法差不多。早日实现财务自由（几乎是不可能的事情，但是梦想还是要有的，万一实现了呢？），等孩子可以独立了，然后去依山傍水的地方做一间民宿，最好找人打理。我呢？有时间写写代码玩玩。</p>
+<ul>
+  <li>按<code class="highlighter-rouge">Cmd + Shift + I</code>Mac</li>
+  <li>右键单击网页，然后在Google Chrome上选择检查(inspect)。</li>
+  <li>点击kabob菜单，然后导航到Google Chrome上的更多工具和开发者工具。</li>
+  <li>右键单击网页，然后在Mozilla Firefox上选择检查元素。</li>
+  <li>点击汉堡菜单，然后导航到Web Developer，然后在Mozilla Firefox上切换工具。</li>
+  <li>通过点击齿轮图标，然后导航到Edge/IE上的F12 Developer Tools。</li>
+</ul>
+
+<h3 id="section-3">开发者工具的主要功能如下：</h3>
+
+<ul>
+  <li>Switching User Agents</li>
+  <li>Edit and Replay Requests</li>
+  <li>Editing Cookies</li>
+  <li>Editing Local Storage</li>
+  <li>Disable CSS</li>
+  <li>Disable Javascript</li>
+  <li>View Headers</li>
+  <li>Native screen-shot capture</li>
+  <li>Offline mode</li>
+  <li>Encode and Decode</li>
+</ul>
+
+<h3 id="section-4">那么对应不同的浏览器功能是否一样呢？看下表</h3>
+
+<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/6.gif" alt="" /></p>
+
+<p>所以这里我们主要以<code class="highlighter-rouge">Chrome</code>和<code class="highlighter-rouge">Firfox</code>为例</p>
+
+<h2 id="switching-user-agents">Switching User Agents</h2>
+
+<h3 id="mozilla-firefox-switching-user-agents">Mozilla Firefox: Switching User Agents</h3>
+
+<ul>
+  <li>浏览到Firefox的<code class="highlighter-rouge">about:config</code>页面，点击我接受风险！</li>
+  <li>在搜索字段中输入useragent。</li>
+  <li>查找<code class="highlighter-rouge">general.useragent.override</code>，如果您看不到此首选项，请右键单击<code class="highlighter-rouge">about:config</code>页面&gt; New&gt; String</li>
+  <li>将首选项命名为<code class="highlighter-rouge">general.useragent.override</code></li>
+  <li>右键单击<code class="highlighter-rouge">general.useragent.override</code>首选项并选择<code class="highlighter-rouge">Reset</code>以切换回默认用户代理。</li>
+</ul>
+
+<h3 id="useragent">查看自己当前的useragent</h3>
+
+<p>首先我们访问<code class="highlighter-rouge">http://www.atool.org/useragent.php</code>查看自己当前的<code class="highlighter-rouge">useragent</code></p>
+
+<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/7.gif" alt="" /></p>
+
+<p>OK!接下来就是一步一步更改<code class="highlighter-rouge">useragent</code>了</p>
+
+<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/8.gif" alt="" /></p>
+
+<p>可见<code class="highlighter-rouge">useragent</code>已经更改了</p>
+
+<h3 id="google-chrome-switching-user-agents">Google Chrome: Switching User Agents</h3>
+
+<ul>
+  <li>打开浏览器的开发者工具</li>
+  <li>点击更多工具选择<code class="highlighter-rouge">Network Conditions</code></li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/9.gif" alt="" /></p>
+
+<p>下面分别介绍其他的浏览器的更改方式，一笔带过感兴趣的自己操作一遍。</p>
+
+<h3 id="edgeie-switching-user-agents">Edge/IE: Switching User Agents</h3>
+
+<ul>
+  <li>打开浏览器的开发者工具</li>
+  <li>点击<code class="highlighter-rouge">Emulation</code>标签选择<code class="highlighter-rouge">useragent</code></li>
+</ul>
+
+<p>接下来介绍如何用开发者工具<code class="highlighter-rouge">编辑和重放请求</code></p>
+
+<h2 id="edit-and-replay-requests">Edit and Replay Requests</h2>
+
+<h3 id="mozilla-firefox-edit-and-replay-requests">Mozilla Firefox: Edit and Replay Requests</h3>
+
+<ul>
+  <li>打开浏览器的开发者工具</li>
+  <li>点击<code class="highlighter-rouge">Network</code>标签</li>
+  <li>刷新或者提交数据</li>
+  <li>在请求上面右键点击<code class="highlighter-rouge">Edit and Resend</code></li>
+  <li>修改数据后点击<code class="highlighter-rouge">Send</code>按钮</li>
+  <li>右键在新标签打开</li>
+</ul>
+
+<p>由于之前申请环境的时候有一个内网地址，可以看看，根据实际情况的不同，我这里是<code class="highlighter-rouge">172.18.0.13</code></p>
+
+<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/10.gif" alt="" /></p>
+
+<p>这里我们在更改数据的时候同时更改了<code class="highlighter-rouge">password</code>字段以及<code class="highlighter-rouge">user_token</code>字段，这里是因为做了<code class="highlighter-rouge">csrf</code>验证。详细原理可以自行学习相关知识。</p>
+
+<h2 id="editing-cookies">Editing Cookies</h2>
+
+<h3 id="mozilla-firefox-editing-cookies">Mozilla Firefox: Editing Cookies</h3>
+
+<ul>
+  <li>打开浏览器的开发工具</li>
+  <li>点击<code class="highlighter-rouge">Storage</code>选项卡</li>
+  <li>导航到Cookies，然后选择应用程序域</li>
+  <li>双击任何cookie值以编辑它们</li>
+</ul>
+
+<p>首先访问<code class="highlighter-rouge">http://www.w3school.com.cn/tiy/t.asp?f=hdom_document_cookie</code>测试当前的<code class="highlighter-rouge">cookie</code>值</p>
+
+<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/11.gif" alt="" /></p>
+
+<p>成功修改<code class="highlighter-rouge">Cookie</code>的值,但是由于这里刷新一次服务器就会<code class="highlighter-rouge">response</code>一个原来的值，所以再刷新一次他就变成原来的<code class="highlighter-rouge">1</code></p>
+
+<h3 id="google-chrome-editing-cookies">Google Chrome: Editing Cookies</h3>
+
+<ul>
+  <li>打开浏览器的开发工具</li>
+  <li>点击<code class="highlighter-rouge">Application</code>选项卡</li>
+  <li>导航到Cookies，然后选择应用程序域</li>
+  <li>双击任何cookie值以编辑它们</li>
+</ul>
+
+<p>PS:经过测试，有些网站不行。建议用<code class="highlighter-rouge">Firefox</code>编辑<code class="highlighter-rouge">Cookie</code></p>
+
+<h3 id="edgeie-editing-cookies">Edge/IE: Editing Cookies</h3>
+
+<ul>
+  <li>打开浏览器的开发工具</li>
+  <li>点击<code class="highlighter-rouge">Debugger</code>选项卡</li>
+  <li>导航到Cookies，然后选择应用程序域</li>
+  <li>双击任何cookie值以编辑它们</li>
+</ul>
+
+<h2 id="editing-local-storage">Editing Local Storage</h2>
+
+<p>跟<code class="highlighter-rouge">Cookie</code>类似，不再演示。</p>
+
+<h2 id="disable-javascript">Disable JavaScript</h2>
+
+<h3 id="google-chrome-disable-javascript">Google Chrome: Disable JavaScript</h3>
+
+<ul>
+  <li>打开浏览器的开发工具</li>
+  <li>点击三个点菜单然后选择<code class="highlighter-rouge">Settings</code></li>
+  <li>找到<code class="highlighter-rouge">Preferences</code>选择项</li>
+  <li>在<code class="highlighter-rouge">Debugger</code>里面，选中<code class="highlighter-rouge">Disable JavaScript</code></li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/12.gif" alt="" /></p>
+
+<h3 id="mozilla-firefox-disable-javascript">Mozilla Firefox: Disable JavaScript</h3>
+
+<ul>
+  <li>打开浏览器的开发工具</li>
+  <li>点击右侧的设置图标</li>
+  <li>然后在高级选项下面找到禁止<code class="highlighter-rouge">JavaScript</code></li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/13.gif" alt="" /></p>
+
+<h2 id="viewing-headers">Viewing Headers</h2>
+
+<h3 id="google-chrome-viewing-headers">Google Chrome: Viewing Headers</h3>
+
+<ul>
+  <li>打开浏览器的开发工具</li>
+  <li>找到<code class="highlighter-rouge">Network</code>选项</li>
+  <li>执行任何动作对于web应用程序</li>
+  <li>任意找文件查看</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/14.gif" alt="" /></p>
+
+<h3 id="mozilla-firefox-viewing-headers">Mozilla Firefox: Viewing Headers</h3>
+
+<ul>
+  <li>打开浏览器的开发工具</li>
+  <li>点击<code class="highlighter-rouge">Network</code>选项</li>
+  <li>执行任何动作对于web应用程序</li>
+  <li>任意找文件查看</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/15.gif" alt="" /></p>
+
+<h3 id="edgeie-viewing-headers">Edge/IE: Viewing Headers</h3>
+
+<ul>
+  <li>打开浏览器的开发工具</li>
+  <li>点击<code class="highlighter-rouge">Network</code>选项</li>
+  <li>点击<code class="highlighter-rouge">Play</code>按钮</li>
+  <li>执行任何动作对于web应用程序</li>
+  <li>点击<code class="highlighter-rouge">Stop</code>按钮</li>
+  <li>选择一个页面文件点击<code class="highlighter-rouge">Details</code></li>
+</ul>
+
+<h2 id="capture-screen-shots">Capture Screen-shots</h2>
+
+<h3 id="google-chrome-capture-screen-shots">Google Chrome: Capture Screen-shots</h3>
+
+<ul>
+  <li>打开浏览器的开发工具</li>
+  <li>点击<code class="highlighter-rouge">Toogle device toolbar</code></li>
+  <li>点击右上角三个小点点选择<code class="highlighter-rouge">Capture screenshot</code></li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/16.gif" alt="" /></p>
+
+<h3 id="mozilla-firefox-capture-screen-shots">Mozilla Firefox: Capture Screen-shots</h3>
+
+<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/17.gif" alt="" /></p>
+
+<h3 id="edgeie-capture-screen-shots">Edge/IE: Capture Screen-shots</h3>
+
+<ul>
+  <li>点击笔一样的按钮，在顶端</li>
+  <li>找到剪刀一样的按钮点击</li>
+</ul>
+
+<h2 id="offline-mode">Offline mode</h2>
+
+<h3 id="google-chrome-offline-mode">Google Chrome: Offline mode</h3>
+
+<ul>
+  <li>打开浏览器的开发工具</li>
+  <li>点击<code class="highlighter-rouge">Network</code>选项</li>
+  <li>选中<code class="highlighter-rouge">Offline</code>选项</li>
+</ul>
+
+<h3 id="mozilla-firefox-offline-mode">Mozilla Firefox: Offline mode</h3>
+
+<ul>
+  <li>选择开发者工具后最下面的<code class="highlighter-rouge">Work Offline</code></li>
+</ul>
+
+<h2 id="encode-and-decode">Encode and Decode</h2>
+
+<p>浏览器的<code class="highlighter-rouge">console</code>有基本的加解密功能</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Function</th>
+      <th>Code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Base64 encode</td>
+      <td>btoa(“string-to-encode”)</td>
+    </tr>
+    <tr>
+      <td>Base64 decode</td>
+      <td>atob(“string-to-decode”)</td>
+    </tr>
+    <tr>
+      <td>URL encode</td>
+      <td>encodeURIComponent(“string-to-encode”)</td>
+    </tr>
+    <tr>
+      <td>URL decode</td>
+      <td>decodeURIComponent(“string-to-decode”)</td>
+    </tr>
+    <tr>
+      <td>HTML encode</td>
+      <td>escape(“string-to-encode”)</td>
+    </tr>
+    <tr>
+      <td>HTML decode</td>
+      <td>unescape(“string-to-decode”)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="https://raw.githubusercontent.com/havysec/havysec.github.io/master/_posts/post_image/2018-03-20/18.gif" alt="" /></p>
 
 <hr />
 <blockquote>
-  <p>如果注定要一个人赶路，那就此告别吧，大漠孤烟，夕阳西下。再喝最后一碗酒，然后我就出发。不必挽留，无需相送。今日一别，来世再见。若他们问起我，就说我是尘世的一粒沙，本该浪迹天涯……
-——来自《网易云音乐》</p>
+  <p>这个世界不缺伟大和成功</p>
+</blockquote>
+
+<blockquote>
+  <p>而我的世界也不怕失败者</p>
+</blockquote>
+
+<blockquote>
+  <p>何不让我追求 我的快乐</p>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>来自林宥嘉《飞》</li>
+  </ul>
 </blockquote>
 
 <p><br /></p>
@@ -354,11 +632,11 @@ p.flower {background-image: url(http://7sbmib.com1.z0.glb.clouddn.com/body_backg
 <section>
        <ul class="pager">
         
-        
-        <li class="next">
-            <a href="/2017/10/Metasploitable2-Exploitability-Guide/" data-toggle="tooltip" data-placement="top" title="Metasploitable2-Exploitability-Guide">下一篇：  <span>Metasploitable2-Exploitability-Guide</span>
+        <li class="previous">
+            <a href="/2018/02/%E9%BB%91%E5%AE%A2%E4%B8%8E%E7%94%BB%E5%AE%B6-%E8%AF%BB%E5%90%8E%E6%84%9F/" data-toggle="tooltip" data-placement="top" title="《黑客与画家》读后感">上一篇：  <span>《黑客与画家》读后感</span>
             </a>
         </li>
+        
         
     </ul>
 </section>
@@ -369,7 +647,7 @@ p.flower {background-image: url(http://7sbmib.com1.z0.glb.clouddn.com/body_backg
 <br>
 
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="" data-title="随便写写 " data-url="robotkang.cc//2017/10/%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99/"></div>
+	<div class="ds-thread" data-thread-key="" data-title="渗透测试与开发者工具 " data-url="robotkang.cc//2018/03/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7/"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
